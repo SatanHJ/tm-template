@@ -5,13 +5,10 @@
  * @Author: HJ
  * @Date: 2020-12-24 09:09:00
  * @LastEditors: HJ
- * @LastEditTime: 2020-12-24 14:33:17
+ * @LastEditTime: 2020-12-24 16:34:56
  */
 const path = require('path')
 const webpack = require('webpack')
-const GitRevisionPlugin = require('git-revision-webpack-plugin')
-
-const GitRevision = new GitRevisionPlugin()
 const buildDate = JSON.stringify(new Date().toLocaleString())
 const createThemeColorReplacerPlugin = require('./config/plugin.config')
 
@@ -63,7 +60,6 @@ const vueConfig = {
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       new webpack.DefinePlugin({
         APP_VERSION: `"${require('./package.json').version}"`,
-        GIT_HASH: JSON.stringify(GitRevision.version()),
         BUILD_DATE: buildDate
       })
     ],
